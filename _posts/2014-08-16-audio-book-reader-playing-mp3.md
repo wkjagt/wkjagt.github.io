@@ -56,4 +56,4 @@ One last detail before we continue. By default the RasPi sends audio over HDMI, 
 
 I found that the playback quality of the RPi when using the standard ALSA sound driver that comes with the Raspbian distribution was pretty good. It did however have one nasty habit: it would generate a loud sharp pop whenever playback was paused. Installing PulseAudio solved this problem, see [here](http://dbader.org/blog/crackle-free-audio-on-the-raspberry-pi-with-mpd-and-pulseaudio) for instructions.
 
-This pretty much rounds up how to play audio files from Python code, which is an important part of the Python application that runs the audio book player. Another important part is reading RFID parts, which I will explain in a next post.
+This pretty much rounds up how to play audio files from Python code, which is an important part of the Python application that runs the audio book player. Another important part is reading RFID parts, which I will explain in [a next post]({% post_url 2014-08-17-audio-book-reader-reading-rfid %}).
