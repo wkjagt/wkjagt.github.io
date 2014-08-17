@@ -2,6 +2,7 @@
 layout: post
 title:  "RFID audio book reader: playing MP3 files"
 date:   2014-08-16 15:53:50
+tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 2: playing MP3 files from Python."
 ---
 
 I recently wrote about [how I built an audio book reader for my nearly blind grandfather](https://gist.github.com/wkjagt/814b3f62ea03c7b1a765) and [posted it to Hacker News](https://news.ycombinator.com/item?id=8177117). I got a lot of feedback and a lot of people tweeted me asking for more technical details about how I built it. So, I'll be writing a series of posts on this.
