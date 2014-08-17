@@ -190,12 +190,12 @@ pre {
  */
 .icon {
 
-    > svg {
+    > i {
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 35px;
+        height: 35px;
         vertical-align: middle;
-
+        color: $grey-color;
         path {
             fill: $grey-color;
         }
