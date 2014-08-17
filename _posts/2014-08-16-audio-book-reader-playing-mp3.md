@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RFID audio book reader: playing MP3 files"
+title:  "RFID audio book reader PART 2: playing MP3 files"
 date:   2014-08-16 15:53:50
 tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 2: playing MP3 files from Python."
 ---

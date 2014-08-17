@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RFID audio book reader: reading RFID cards"
+title: "RFID audio book reader PART 3: reading RFID cards"
 date:   2014-08-17 15:53:50
 tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 3: reading the RFID cards."
 ---
