@@ -2,7 +2,7 @@
 layout: post
 title:  "RFID audio book reader PART 4: interrupts and thread safety"
 date:   2014-08-19 15:53:50
-tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 3: interrupts and thread safety."
+tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 4: interrupts and thread safety."
 ---
 
 In the last two posts I described how I setup the Raspberry Pi to read MP3 files, and how I connected the RFID reader to read cards. Using Python code to wait for an RFID card of the reader was also covered. We'll also take a look at how the buttons work.
