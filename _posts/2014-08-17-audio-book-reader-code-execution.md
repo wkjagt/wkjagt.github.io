@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RFID audio book reader PART 3: code execution"
+title:  "RFID audio book reader PART 3: interrupts and thread safety"
 date:   2014-08-18 15:53:50
 ---
 
@@ -64,3 +64,32 @@ The other three buttons function in the exact same way. They're all connected to
 
 The main loop described above runs in the main thread of the program. It keeps looping and blocking on the serial port. If an interrupt occurs on one of the button's pins a seperate thread is created to execute the code of the callback, in parallel with the main thread. This means that the main loop is not blocking the new thread. If for example, the pause button is pressed, a new thread is created, and the `pause` method is executed, which sends an instruction to the mpd server (that's playing the audio) to tell it to pause.
 
+If you're using multiple threads like this, strange things can happen though. For example, within the main thread, the mpd server is constantly queried to get the current status (which includes information like the current volume, the track that's playing etc.). As you may remember from [this post]({% post_url 2014-08-16-audio-book-reader-playing-mp3 %}) this information is transmitted over a local port. If I don't keep thread safety in mind, pressing the pause button will spawn a thread that also communicates over this local port, and the two information streams will interfere. I actually encountered this bug while developing this code, which manifested itself by occasionaly throwing an exception when I pressed a button while a book was playing. The pause command (in the new thread) to the mpd server received information it shouldn't, and the status command in the main thread was receiving an incomplete one.
+
+The problem is that both threads are sharing a resource (the mpd server), and they're doing it at the same time. A solution (the one that I chose), is for a thread to lock access to the resource while it's using it. I extended the `MPDClient` class into my own `LockableMPDClient` (taken from [this example](https://github.com/Mic92/python-mpd2/blob/master/examples/locking.py)).
+
+{% highlight python %}
+class LockableMPDClient(MPDClient):
+    def __init__(self, use_unicode=False):
+        super(LockableMPDClient, self).__init__()
+        self.use_unicode = use_unicode
+        self._lock = Lock()
+    def acquire(self):
+        self._lock.acquire()
+    def release(self):
+        self._lock.release()
+    def __enter__(self):
+        self.acquire()
+    def __exit__(self, type, value, traceback):
+        self.release()
+{% endhighlight %}
+
+When instantiating the mpd client, we give the object a `threading.Lock` object, which provides a very easy locking interface. Since the mpd client object is shared by all threads, once one thread has aquired the lock, another one can't acquire it until it's released. If you're familiar with python, you'll notice the `__enter__` and `__exit__` methods. Providing these two methods allow me to do the following whenever I need to call a method on the mpd client:
+
+{% highlight python %}
+def get_status(self):
+    with self.mpd_client:
+        return self.mpd_client.status()
+{% endhighlight %}
+
+When a `with` statement is executed, the `__enter__` method is called on the object. When all code within the `with` block is executed, `__exit__` is called on the object, meaning that for the duration of `self.mpd_client.status()` access to the mpd client is locked for all other threads. Actually this use of `with` is only half of what it can do because I don't need context guarding (read more [here](http://effbot.org/zone/python-with-statement.htm)) but it is enough to achieve locking.
