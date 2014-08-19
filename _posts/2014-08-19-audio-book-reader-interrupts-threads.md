@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "RFID audio book reader PART 3: interrupts and thread safety"
-date:   2014-08-18 15:53:50
+date:   2014-08-19 15:53:50
+tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 3: interrupts and thread safety."
 ---
 
 In the last two posts I described how I setup the Raspberry Pi to read MP3 files, and how I connected the RFID reader to read cards. Using Python code to wait for an RFID card of the reader was also covered. We'll also take a look at how the buttons work.
@@ -93,3 +94,5 @@ def get_status(self):
 {% endhighlight %}
 
 When a `with` statement is executed, the `__enter__` method is called on the object. When all code within the `with` block is executed, `__exit__` is called on the object, meaning that for the duration of `self.mpd_client.status()` access to the mpd client is locked for all other threads. Actually this use of `with` is only half of what it can do because I don't need context guarding (read more [here](http://effbot.org/zone/python-with-statement.htm)) but it is enough to achieve locking.
+
+In a next post I will describe in more detail how I implemented the buttons, because even though they may seem like the easiest to implement, they're actually not.
