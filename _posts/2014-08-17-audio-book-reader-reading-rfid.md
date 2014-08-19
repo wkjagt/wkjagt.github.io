@@ -42,4 +42,4 @@ Even though this will successfully display the raw data from the RFID tag, it's 
 
 Reading the RFID cards was easy, but as soon as I saw how the reader worked, I realized there was a flaw in my plan. I really wanted the play and pause of the audio playback to be controlled by the RFID card only. Placing the card on top would start playing the corresponding book, and removing it would pause it. I assumed I could "ping" the RFID reader for the id of the card within its range, but instead of this, the reader sends the id of the card over serial as soon as it's in range, and it does this only once. This meant I needed an additional button on the reader to be able to pause / resume playback. A small deception but four buttons is still very acceptable.
 
-A short post, but it pretty much rounds up the implementation of the RFID reader in this project. In a next post I'll describe the implementation of the buttons.
+A short post, but it pretty much rounds up the implementation of the RFID reader in this project. In the [next post]({%post_url 2014-08-18-audio-book-reader-code-execution %}) I'll describe in big lines how the code executes.
