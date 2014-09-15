@@ -11,3 +11,4 @@ So far:
 - [Playing MP3 from Python]({% post_url 2014-08-16-audio-book-reader-playing-mp3 %})
 - [Reading RFID cards from Python]({% post_url 2014-08-17-audio-book-reader-reading-rfid %})
 - [Interrupts and thread safety]({% post_url 2014-08-19-audio-book-reader-interrupts-threads %})
+- [Buttons and status light]({% post_url 2014-09-13-audio-book-reader-finishing-up %})

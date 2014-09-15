@@ -95,4 +95,4 @@ def get_status(self):
 
 When a `with` statement is executed, the `__enter__` method is called on the object. When all code within the `with` block is executed, `__exit__` is called on the object, meaning that for the duration of `self.mpd_client.status()` access to the mpd client is locked for all other threads. Actually this use of `with` is only half of what it can do because I don't need context guarding (read more [here](http://effbot.org/zone/python-with-statement.htm)) but it is enough to achieve locking.
 
-In a next post I will describe in more detail how I implemented the buttons, because even though they may seem like the easiest to implement, they're actually not.
+In [the next post]({% post_url 2014-09-13-audio-book-reader-finishing-up %}) I will describe in more detail how I implemented the buttons, because even though they may seem like the easiest to implement, they're actually not.

@@ -7,6 +7,9 @@ tweettext: "The RFID audio book reader for my nearly blind grandfather, PART 5: 
 
 In the last posts I described how I setup the Raspberry Pi to read RFID cards and play a corresponding collection of MP3 files. In this post I will explain the remaining steps to make the player completely functional: the buttons and the status light.
 
+
+![](https://c4.staticflickr.com/4/3685/9206778089_2f19e21bc8_c.jpg)
+
 ## The buttons
 
 The buttons may seem like the easiest part because a button is a very simple device. In the previous post I told you about interrupts and how they make the buttons work: the program detects changes in the level on the pins to which the buttons are connected, and executes corresponding code in a separate thread.
