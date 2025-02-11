@@ -7,8 +7,9 @@ TEMPLATE_FILE_NAME = 'index.html.erb'
 OUTPUT_FILE_NAME = 'index.html'
 RESIZE=true
 
-title="Willem's Photos"
+title="willems.photos"
 fulls = Dir["./images/fulls/*"]
+
 
 files = fulls.map.with_index do |file, i|
   base_name = File.basename(file)
@@ -23,7 +24,9 @@ files = fulls.map.with_index do |file, i|
     name: base_name,
     orientation: orientation
   )
-end
+end.sort_by do |f|
+  Integer(f.name.split("-").first.to_i)
+end.reverse
 
 template = ERB.new(File.read(TEMPLATE_FILE_NAME))
 output = template.result(binding)
