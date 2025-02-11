@@ -5,9 +5,8 @@ require 'ostruct'
 
 TEMPLATE_FILE_NAME = 'index.html.erb'
 OUTPUT_FILE_NAME = 'index.html'
-RESIZE=true
+RESIZE=false
 
-title="willems.photos"
 fulls = Dir["./images/fulls/*"]
 
 
