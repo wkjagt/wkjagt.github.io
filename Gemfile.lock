@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    observer (0.1.2)
+    pkg-config (1.5.9)
+    rmagick (6.1.1)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
+
+PLATFORMS
+  arm64-darwin-21
+  ruby
+
+DEPENDENCIES
+  rmagick
+
+BUNDLED WITH
+   2.6.3
