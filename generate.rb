@@ -17,8 +17,18 @@ files = fulls.map.with_index do |file, i|
   orientation = img.columns > img.rows ? "horizontal" : "vertical"
   if RESIZE
     puts("#{i+1} of #{fulls.size}")
+    
     resized = img.resize_to_fit(200)
-    resized.write("./images/thumbs/#{base_name}")
+    height = resized.rows
+    width = resized.columns
+
+    cropped = if orientation == "horizontal"
+      resized.crop((width-height)/2, 0, height, height)
+    else
+      resized.crop(0, (height-width)/2, width, width)
+    end
+
+    cropped.write("./images/thumbs/#{base_name}")
   end
   OpenStruct.new(
     name: base_name,
