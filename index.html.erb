@@ -27,7 +27,10 @@
           <section id="thumbnails">
             <% for file in files do %>
             <article>
-              <a class="thumbnail" href="images/fulls/<%= file.name %>" data-position="center center">
+              <a class="thumbnail" href="images/fulls/<%= file.name %>"
+                data-position="center center"
+                data-orientation="<%= file.orientation %>"
+                >
                 <img src="images/thumbs/<%= file.name %>" alt="" />
               </a>
             </article>

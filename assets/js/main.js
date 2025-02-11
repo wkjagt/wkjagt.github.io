@@ -431,7 +431,7 @@ var main = (function($) { var _ = {
 	 							s.$slideImage
 		 							.css('background-image', '')
 		 							.css('background-position', ($thumbnail.data('position') || 'center'))
-		 							.css('background-size', 'auto 100%')
+		 							.css('background-size', ($thumbnail.data('orientation') == "vertical" ? 'auto 100%' : '100% auto'));
 
 						// Caption.
 							s.$slideCaption = s.$slide.find('.caption');
